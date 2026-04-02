@@ -20,18 +20,29 @@ body {
 }
 
 h2.center { text-align:center; }
-h2.left { text-align:left; }
+h2.left { text-align:left; margin-top:30px; }
+
+/* BUTTON (restored) */
+.button-link {
+  display:inline-block;
+  background:#4db6ac;
+  color:white;
+  padding:10px 20px;
+  border-radius:6px;
+  text-decoration:none;
+}
+.button-link:hover { background:#3a9a8a; }
 
 /* ROW */
 .row {
   display:flex;
   overflow-x:auto;
-  gap:10px;
+  gap:12px;
 }
 
-/* SMALLER CARDS */
+/* CARDS */
 .card {
-  min-width:160px;
+  min-width:170px;
   background:#243238;
   border-radius:8px;
   overflow:hidden;
@@ -40,7 +51,7 @@ h2.left { text-align:left; }
 
 .card img {
   width:100%;
-  height:90px;
+  height:95px;
   object-fit:cover;
 }
 
@@ -99,9 +110,10 @@ h2.left { text-align:left; }
 src="https://www.youtube.com/embed/videoseries?list=PLBKLQ3LsQZCO6KcklmmA_q2RFmg5zNEQU"></iframe>
 
 <h2 class="center">The Recovery Channel</h2>
-<a href="https://www.youtube.com/@therecoverychannel2026" target="_blank">Visit Channel</a>
+<a class="button-link" href="https://www.youtube.com/@therecoverychannel2026" target="_blank">
+Visit Channel
+</a>
 
-<!-- FUNCTION TO BUILD CARDS -->
 <script>
 function card(id, vid, title){
   return `<div class="card" id="${id}">
@@ -111,21 +123,17 @@ function card(id, vid, title){
 }
 </script>
 
-<!-- 🔥 RECOVERY MOTIVATION -->
+<!-- 🔥 MOTIVATION -->
 <h2 class="left">🔥 Recovery Motivation</h2>
 <div class="row">
 <script>
 document.write(
-card("m1","ZXsQAXx_ao0","If You're Struggling Right Now")+
-card("m2","mgmVOuLgFB0","One Day at a Time")+
+card("m1","ZXsQAXx_ao0","If You're Struggling Right Now – Watch This")+
+card("m2","mgmVOuLgFB0","One Day at a Time – Recovery Message")+
 card("m3","wnHW6o8WMas","You Can Beat Addiction")+
-card("m4","4cYuWLZI5kw","Keep Going")+
-card("m5","kXYiU_JCYtU","Fight Through It")+
-card("m6","hLQl3WQQoQ0","Stay Strong")+
-card("m7","RgKAFK5djSk","Don't Give Up")+
-card("m8","YQHsXMglC9A","Rise Again")+
-card("m9","CevxZvSJLk8","You Matter")+
-card("m10","OPf0YbXqDm0","Push Forward")
+card("m4","4cYuWLZI5kw","Keep Going – Motivation")+
+card("m5","hLQl3WQQoQ0","Stay Strong Through Hard Moments")+
+card("m6","RgKAFK5djSk","Don't Give Up – Recovery Motivation")
 );
 </script>
 </div>
@@ -135,35 +143,27 @@ card("m10","OPf0YbXqDm0","Push Forward")
 <div class="row">
 <script>
 document.write(
-card("t1","PY9DcIMGxMs","Russell Brand on Recovery")+
-card("t2","ys6TCO_olOc","Johann Hari TED Talk")+
-card("t3","66cYcSak6nE","Gabor Maté")+
-card("t4","tdJAQZxJ6vY","Addiction & Stigma")+
-card("t5","blzZKUFN4x0","Recovery Talk")+
-card("t6","e0WZx7lUOrY","Brain & Addiction")+
-card("t7","8p6l0vGqkE0","Addiction Science")+
-card("t8","K2rxn3qz6vQ","Why Addiction Happens")+
-card("t9","b8n6x7s5F0k","Recovery Psychology")+
-card("t10","7p6n4u0v3rA","Healing Talk")
+card("t1","PY9DcIMGxMs","Russell Brand on Addiction & Recovery")+
+card("t2","ys6TCO_olOc","Johann Hari TED Talk on Addiction")+
+card("t3","66cYcSak6nE","Gabor Maté – The Power of Addiction")+
+card("t4","tdJAQZxJ6vY","Addiction & Stigma Talk")+
+card("t5","e0WZx7lUOrY","How Addiction Changes the Brain")+
+card("t6","QmOF0crdyRU","Dopamine and Addiction Explained")
 );
 </script>
 </div>
 
 <!-- ⭐ STORIES -->
-<h2 class="left">⭐ Real Stories</h2>
+<h2 class="left">⭐ Real Stories of Recovery</h2>
 <div class="row">
 <script>
 document.write(
-card("s1","OG--M8B04DA","Brandon Novak Story")+
-card("s2","Kj0E3wF2l4Q","Jelly Roll Interview")+
-card("s3","5S7c3lq3s7M","Macklemore")+
-card("s4","3Z4QWf0G0k0","Eminem Sobriety")+
-card("s5","l482T0yNkeo","Life Turnaround")+
-card("s6","60ItHLz5WEA","From Addiction to Recovery")+
-card("s7","9bZkp7q19f0","Personal Story")+
-card("s8","ktvTqknDobU","Recovery Journey")+
-card("s9","UceaB4D0jpo","Overcoming Addiction")+
-card("s10","09R8_2nJtjg","Turning Point")
+card("s1","OG--M8B04DA","Brandon Novak – Full Recovery Story")+
+card("s2","Kj0E3wF2l4Q","Jelly Roll on Addiction and Redemption")+
+card("s3","5S7c3lq3s7M","Macklemore on Drug Addiction")+
+card("s4","3Z4QWf0G0k0","Eminem Talks About Sobriety")+
+card("s5","l482T0yNkeo","Personal Story – Hitting Rock Bottom")+
+card("s6","60ItHLz5WEA","From Addiction to Recovery Journey")
 );
 </script>
 </div>
@@ -173,16 +173,12 @@ card("s10","09R8_2nJtjg","Turning Point")
 <div class="row">
 <script>
 document.write(
-card("u1","p3JLaF_4Tz8","How Addiction Works")+
+card("u1","p3JLaF_4Tz8","How Addiction Works in the Brain")+
 card("u2","ao8L-0nSYzg","Why Addiction Happens")+
-card("u3","BVg2bfqblGI","Neuroscience")+
-card("u4","w9dZk9g2xE0","Brain Chemistry")+
-card("u5","QmOF0crdyRU","Dopamine Explained")+
-card("u6","h6fcK_fRYaI","Habit Loop")+
-card("u7","VYOjWnS4cMY","Why We Get Addicted")+
-card("u8","uelHwf8o7_U","Addiction Explained")+
-card("u9","YVkUvmDQ3HY","Mental Health")+
-card("u10","dQw4w9WgXcQ","Behavior Patterns")
+card("u3","BVg2bfqblGI","Neuroscience of Addiction")+
+card("u4","h6fcK_fRYaI","Habit Loop Explained")+
+card("u5","VYOjWnS4cMY","Why We Get Addicted")+
+card("u6","uelHwf8o7_U","Addiction Explained Clearly")
 );
 </script>
 </div>
@@ -193,44 +189,63 @@ card("u10","dQw4w9WgXcQ","Behavior Patterns")
 <div id="chatbox">
 <div id="chat-header">Need Support 💬</div>
 <div id="chat-messages"></div>
-<input id="chat-input">
+<input id="chat-input" placeholder="Type here...">
 </div>
 
 <script>
 const messages=document.getElementById("chat-messages");
 const input=document.getElementById("chat-input");
 
-function msg(t){let d=document.createElement("div");d.innerHTML=t;messages.appendChild(d);}
+function msg(t){
+ let d=document.createElement("div");
+ d.innerHTML=t;
+ messages.appendChild(d);
+ messages.scrollTop=messages.scrollHeight;
+}
 
 function highlight(id){
  let el=document.getElementById(id);
- el.scrollIntoView({behavior:"smooth"});
+ el.scrollIntoView({behavior:"smooth", block:"center"});
  el.classList.add("highlight");
  setTimeout(()=>el.classList.remove("highlight"),2000);
 }
 
 function bot(t){
  t=t.toLowerCase();
- if(t.includes("use")){
+
+ if(t.includes("use")||t.includes("craving")){
   highlight("m1");
-  return `You're not alone.<br><a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0">▶ Watch this now</a><br>Call 988 if needed.`;
+  return `You're not alone right now.<br>
+  <a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0" target="_blank">▶ Watch this now</a><br>
+  Just press play and stay with it.<br>
+  If you're in danger, call or text 988.`;
  }
- if(t.includes("sad")){
+
+ if(t.includes("sad")||t.includes("depressed")){
   highlight("s1");
-  return `Try this story:<br><a href="https://www.youtube.com/watch?v=OG--M8B04DA">▶ Watch</a>`;
+  return `You might connect with this story:<br>
+  <a href="https://www.youtube.com/watch?v=OG--M8B04DA" target="_blank">▶ Watch here</a>`;
  }
- return "I'm here. Try a video above.";
+
+ if(t.includes("anxious")){
+  highlight("u1");
+  return `This might help you understand what's happening:<br>
+  <a href="https://www.youtube.com/watch?v=p3JLaF_4Tz8" target="_blank">▶ Watch this</a>`;
+ }
+
+ return `I'm here with you.<br>
+ Try starting with something above—just press play.`;
 }
 
 input.addEventListener("keypress",e=>{
- if(e.key==="Enter"){
+ if(e.key==="Enter" && input.value.trim()){
   msg("<b>You:</b> "+input.value);
   setTimeout(()=>msg("<b>Bot:</b> "+bot(input.value)),500);
   input.value="";
  }
 });
 
-msg("<b>Bot:</b> I'm here with you.");
+msg("<b>Bot:</b> Hi, I'm here with you. What's going on?");
 </script>
 
 </body>
