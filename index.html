@@ -6,82 +6,85 @@
 
 <style>
 body {
-  background-color: #2b3a42;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #e0e6e6;
-  margin: 0;
+  background:#2b3a42;
+  font-family:Segoe UI;
+  color:#e0e6e6;
+  margin:0;
 }
 
 .container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 40px 20px;
-  text-align: center;
+  max-width:1100px;
+  margin:auto;
+  padding:30px;
+  text-align:center;
 }
 
-h2.centered { text-align: center; }
-h2.left { text-align: left; }
+h2.center { text-align:center; }
+h2.left { text-align:left; }
 
+/* ROW */
 .row {
-  display: flex;
-  overflow-x: auto;
-  gap: 15px;
+  display:flex;
+  overflow-x:auto;
+  gap:10px;
 }
 
+/* SMALLER CARDS */
 .card {
-  min-width: 240px;
-  background: #243238;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform .2s;
+  min-width:160px;
+  background:#243238;
+  border-radius:8px;
+  overflow:hidden;
+  flex-shrink:0;
 }
-
-.card:hover { transform: scale(1.05); }
 
 .card img {
-  width: 100%;
-  display: block;
+  width:100%;
+  height:90px;
+  object-fit:cover;
 }
 
 .card a {
-  display: block;
-  padding: 10px;
-  color: #4db6ac;
-  text-decoration: none;
+  display:block;
+  padding:8px;
+  font-size:0.85em;
+  color:#4db6ac;
+  text-decoration:none;
 }
 
-/* highlight effect */
+/* highlight */
 .highlight {
-  box-shadow: 0 0 15px 5px #4db6ac;
+  box-shadow:0 0 12px #4db6ac;
 }
 
 /* chatbot */
 #chatbox {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 280px;
-  background: #1f2a30;
-  border-radius: 10px;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:260px;
+  background:#1f2a30;
+  border-radius:10px;
 }
 
 #chat-header {
-  background: #4db6ac;
-  padding: 10px;
-  text-align: center;
-  color: white;
+  background:#4db6ac;
+  padding:8px;
+  text-align:center;
+  color:white;
 }
 
 #chat-messages {
-  height: 200px;
-  overflow-y: auto;
-  padding: 10px;
+  height:180px;
+  overflow-y:auto;
+  padding:10px;
+  font-size:0.9em;
 }
 
 #chat-input {
-  width: 100%;
-  padding: 10px;
-  border: none;
+  width:100%;
+  padding:8px;
+  border:none;
 }
 </style>
 </head>
@@ -91,94 +94,143 @@ h2.left { text-align: left; }
 <div class="container">
 <h1>Recovery's Got Talent</h1>
 
-<h2 class="centered">Featured Playlist</h2>
+<h2 class="center">Featured Playlist</h2>
 <iframe width="560" height="315"
-src="https://www.youtube.com/embed/videoseries?list=PLBKLQ3LsQZCO6KcklmmA_q2RFmg5zNEQU">
-</iframe>
+src="https://www.youtube.com/embed/videoseries?list=PLBKLQ3LsQZCO6KcklmmA_q2RFmg5zNEQU"></iframe>
 
-<h2 class="centered">The Recovery Channel</h2>
+<h2 class="center">The Recovery Channel</h2>
 <a href="https://www.youtube.com/@therecoverychannel2026" target="_blank">Visit Channel</a>
 
-<!-- ROW -->
+<!-- FUNCTION TO BUILD CARDS -->
+<script>
+function card(id, vid, title){
+  return `<div class="card" id="${id}">
+    <img src="https://img.youtube.com/vi/${vid}/0.jpg">
+    <a href="https://www.youtube.com/watch?v=${vid}" target="_blank">${title}</a>
+  </div>`;
+}
+</script>
+
+<!-- 🔥 RECOVERY MOTIVATION -->
 <h2 class="left">🔥 Recovery Motivation</h2>
 <div class="row">
-<div class="card" id="vid1">
-<img src="https://img.youtube.com/vi/ZXsQAXx_ao0/0.jpg">
-<a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0" target="_blank">If You're Struggling Right Now</a>
+<script>
+document.write(
+card("m1","ZXsQAXx_ao0","If You're Struggling Right Now")+
+card("m2","mgmVOuLgFB0","One Day at a Time")+
+card("m3","wnHW6o8WMas","You Can Beat Addiction")+
+card("m4","4cYuWLZI5kw","Keep Going")+
+card("m5","kXYiU_JCYtU","Fight Through It")+
+card("m6","hLQl3WQQoQ0","Stay Strong")+
+card("m7","RgKAFK5djSk","Don't Give Up")+
+card("m8","YQHsXMglC9A","Rise Again")+
+card("m9","CevxZvSJLk8","You Matter")+
+card("m10","OPf0YbXqDm0","Push Forward")
+);
+</script>
 </div>
 
-<div class="card" id="vid2">
-<img src="https://img.youtube.com/vi/mgmVOuLgFB0/0.jpg">
-<a href="https://www.youtube.com/watch?v=mgmVOuLgFB0">One Day at a Time</a>
-</div>
+<!-- 🎤 TALKS -->
+<h2 class="left">🎤 Powerful Talks</h2>
+<div class="row">
+<script>
+document.write(
+card("t1","PY9DcIMGxMs","Russell Brand on Recovery")+
+card("t2","ys6TCO_olOc","Johann Hari TED Talk")+
+card("t3","66cYcSak6nE","Gabor Maté")+
+card("t4","tdJAQZxJ6vY","Addiction & Stigma")+
+card("t5","blzZKUFN4x0","Recovery Talk")+
+card("t6","e0WZx7lUOrY","Brain & Addiction")+
+card("t7","8p6l0vGqkE0","Addiction Science")+
+card("t8","K2rxn3qz6vQ","Why Addiction Happens")+
+card("t9","b8n6x7s5F0k","Recovery Psychology")+
+card("t10","7p6n4u0v3rA","Healing Talk")
+);
+</script>
 </div>
 
+<!-- ⭐ STORIES -->
 <h2 class="left">⭐ Real Stories</h2>
 <div class="row">
-<div class="card" id="vid3">
-<img src="https://img.youtube.com/vi/OG--M8B04DA/0.jpg">
-<a href="https://www.youtube.com/watch?v=OG--M8B04DA">Brandon Novak Story</a>
+<script>
+document.write(
+card("s1","OG--M8B04DA","Brandon Novak Story")+
+card("s2","Kj0E3wF2l4Q","Jelly Roll Interview")+
+card("s3","5S7c3lq3s7M","Macklemore")+
+card("s4","3Z4QWf0G0k0","Eminem Sobriety")+
+card("s5","l482T0yNkeo","Life Turnaround")+
+card("s6","60ItHLz5WEA","From Addiction to Recovery")+
+card("s7","9bZkp7q19f0","Personal Story")+
+card("s8","ktvTqknDobU","Recovery Journey")+
+card("s9","UceaB4D0jpo","Overcoming Addiction")+
+card("s10","09R8_2nJtjg","Turning Point")
+);
+</script>
 </div>
 
-<div class="card" id="vid4">
-<img src="https://img.youtube.com/vi/Kj0E3wF2l4Q/0.jpg">
-<a href="https://www.youtube.com/watch?v=Kj0E3wF2l4Q">Jelly Roll Interview</a>
-</div>
+<!-- 🧠 SCIENCE -->
+<h2 class="left">🧠 Understanding Addiction</h2>
+<div class="row">
+<script>
+document.write(
+card("u1","p3JLaF_4Tz8","How Addiction Works")+
+card("u2","ao8L-0nSYzg","Why Addiction Happens")+
+card("u3","BVg2bfqblGI","Neuroscience")+
+card("u4","w9dZk9g2xE0","Brain Chemistry")+
+card("u5","QmOF0crdyRU","Dopamine Explained")+
+card("u6","h6fcK_fRYaI","Habit Loop")+
+card("u7","VYOjWnS4cMY","Why We Get Addicted")+
+card("u8","uelHwf8o7_U","Addiction Explained")+
+card("u9","YVkUvmDQ3HY","Mental Health")+
+card("u10","dQw4w9WgXcQ","Behavior Patterns")
+);
+</script>
 </div>
 
 </div>
 
 <!-- CHAT -->
 <div id="chatbox">
-<div id="chat-header">Need Support? 💬</div>
+<div id="chat-header">Need Support 💬</div>
 <div id="chat-messages"></div>
-<input id="chat-input" placeholder="Type here...">
+<input id="chat-input">
 </div>
 
 <script>
-const messages = document.getElementById("chat-messages");
-const input = document.getElementById("chat-input");
+const messages=document.getElementById("chat-messages");
+const input=document.getElementById("chat-input");
 
-function addMessage(text) {
-  let div = document.createElement("div");
-  div.innerHTML = text;
-  messages.appendChild(div);
-  messages.scrollTop = messages.scrollHeight;
-}
+function msg(t){let d=document.createElement("div");d.innerHTML=t;messages.appendChild(d);}
 
 function highlight(id){
-  let el = document.getElementById(id);
-  el.scrollIntoView({behavior:"smooth"});
-  el.classList.add("highlight");
-  setTimeout(()=>el.classList.remove("highlight"),2000);
+ let el=document.getElementById(id);
+ el.scrollIntoView({behavior:"smooth"});
+ el.classList.add("highlight");
+ setTimeout(()=>el.classList.remove("highlight"),2000);
 }
 
-function botResponse(text){
-  text = text.toLowerCase();
-
-  if(text.includes("use") || text.includes("craving")){
-    highlight("vid1");
-    return `You're not alone. <br><a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0" target="_blank">▶ Watch this right now</a><br>If you're in danger call 988.`;
-  }
-
-  if(text.includes("sad")){
-    highlight("vid3");
-    return `Try this story—you might relate:<br><a href="https://www.youtube.com/watch?v=OG--M8B04DA">▶ Watch</a>`;
-  }
-
-  return "I'm here with you. Try watching something above.";
+function bot(t){
+ t=t.toLowerCase();
+ if(t.includes("use")){
+  highlight("m1");
+  return `You're not alone.<br><a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0">▶ Watch this now</a><br>Call 988 if needed.`;
+ }
+ if(t.includes("sad")){
+  highlight("s1");
+  return `Try this story:<br><a href="https://www.youtube.com/watch?v=OG--M8B04DA">▶ Watch</a>`;
+ }
+ return "I'm here. Try a video above.";
 }
 
-input.addEventListener("keypress", e=>{
-  if(e.key==="Enter"){
-    addMessage("<b>You:</b> "+input.value);
-    let r = botResponse(input.value);
-    setTimeout(()=>addMessage("<b>Bot:</b> "+r),500);
-    input.value="";
-  }
+input.addEventListener("keypress",e=>{
+ if(e.key==="Enter"){
+  msg("<b>You:</b> "+input.value);
+  setTimeout(()=>msg("<b>Bot:</b> "+bot(input.value)),500);
+  input.value="";
+ }
 });
 
-addMessage("<b>Bot:</b> Hi, I'm here with you. What's going on?");
+msg("<b>Bot:</b> I'm here with you.");
 </script>
 
 </body>
