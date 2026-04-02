@@ -1,223 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>The Recovery Channel</title>
+<meta charset="UTF-8">
+<title>The Recovery Channel</title>
 
-  <style>
-    body {
-      background-color: #2b3a42;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      color: #e0e6e6;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+body {
+  background-color: #2b3a42;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #e0e6e6;
+  margin: 0;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      text-align: center;
-    }
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+}
 
-    h1 {
-      font-size: 2.2em;
-      color: #f0f8f8;
-    }
+h2.centered { text-align: center; }
+h2.left { text-align: left; }
 
-    h2 {
-      margin: 30px 0 10px;
-      color: #cfd8dc;
-    }
+.row {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+}
 
-    .centered {
-      text-align: center;
-    }
+.card {
+  min-width: 240px;
+  background: #243238;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform .2s;
+}
 
-    .left {
-      text-align: left;
-    }
+.card:hover { transform: scale(1.05); }
 
-    a {
-      color: #4db6ac;
-      text-decoration: none;
-    }
+.card img {
+  width: 100%;
+  display: block;
+}
 
-    iframe {
-      display: block;
-      margin: 20px auto;
-      max-width: 100%;
-      border-radius: 10px;
-    }
+.card a {
+  display: block;
+  padding: 10px;
+  color: #4db6ac;
+  text-decoration: none;
+}
 
-    .button-link {
-      display: inline-block;
-      background-color: #4db6ac;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 6px;
-    }
+/* highlight effect */
+.highlight {
+  box-shadow: 0 0 15px 5px #4db6ac;
+}
 
-    /* Netflix-style rows */
-    .row {
-      display: flex;
-      overflow-x: auto;
-      gap: 15px;
-      padding-bottom: 10px;
-    }
+/* chatbot */
+#chatbox {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 280px;
+  background: #1f2a30;
+  border-radius: 10px;
+}
 
-    .card {
-      min-width: 220px;
-      background: #243238;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: left;
-      flex-shrink: 0;
-      transition: transform 0.2s;
-    }
+#chat-header {
+  background: #4db6ac;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
 
-    .card:hover {
-      transform: scale(1.05);
-    }
+#chat-messages {
+  height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+}
 
-    .row::-webkit-scrollbar {
-      display: none;
-    }
-
-    /* Chatbot */
-    #chatbox {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 280px;
-      background: #1f2a30;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      overflow: hidden;
-    }
-
-    #chat-header {
-      background: #4db6ac;
-      padding: 10px;
-      color: white;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    #chat-messages {
-      height: 200px;
-      overflow-y: auto;
-      padding: 10px;
-      font-size: 0.9em;
-    }
-
-    #chat-input {
-      width: 100%;
-      border: none;
-      padding: 10px;
-      outline: none;
-    }
-  </style>
+#chat-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Recovery's Got Talent</h1>
-    <p>A safe place to find encouragement during your recovery journey.</p>
 
-    <h2 class="centered">Featured Playlist</h2>
-    <iframe width="560" height="315"
-      src="https://www.youtube.com/embed/videoseries?list=PLBKLQ3LsQZCO6KcklmmA_q2RFmg5zNEQU"
-      allowfullscreen>
-    </iframe>
+<div class="container">
+<h1>Recovery's Got Talent</h1>
 
-    <h2 class="centered">The Recovery Channel</h2>
-    <a class="button-link" href="https://www.youtube.com/@therecoverychannel2026" target="_blank">
-      Visit Channel
-    </a>
+<h2 class="centered">Featured Playlist</h2>
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/videoseries?list=PLBKLQ3LsQZCO6KcklmmA_q2RFmg5zNEQU">
+</iframe>
 
-    <!-- ROW 1 -->
-    <h2 class="left">🔥 Recovery Motivation</h2>
-    <div class="row">
-      <div class="card"><a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0" target="_blank">If You're Struggling Right Now (Watch This)</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=mgmVOuLgFB0" target="_blank">One Day at a Time – Recovery Message</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=wnHW6o8WMas" target="_blank">You Can Beat Addiction</a></div>
-    </div>
+<h2 class="centered">The Recovery Channel</h2>
+<a href="https://www.youtube.com/@therecoverychannel2026" target="_blank">Visit Channel</a>
 
-    <!-- ROW 2 -->
-    <h2 class="left">🎤 Powerful Talks</h2>
-    <div class="row">
-      <div class="card"><a href="https://www.youtube.com/watch?v=PY9DcIMGxMs" target="_blank">Russell Brand: Recovery & Addiction Talk</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=ys6TCO_olOc" target="_blank">Johann Hari TED Talk on Addiction</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=66cYcSak6nE" target="_blank">Gabor Maté: The Power of Addiction</a></div>
-    </div>
+<!-- ROW -->
+<h2 class="left">🔥 Recovery Motivation</h2>
+<div class="row">
+<div class="card" id="vid1">
+<img src="https://img.youtube.com/vi/ZXsQAXx_ao0/0.jpg">
+<a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0" target="_blank">If You're Struggling Right Now</a>
+</div>
 
-    <!-- ROW 3 -->
-    <h2 class="left">⭐ Real Stories of Recovery</h2>
-    <div class="row">
-      <div class="card"><a href="https://www.youtube.com/watch?v=OG--M8B04DA" target="_blank">Brandon Novak: Addiction & Recovery Story</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=Kj0E3wF2l4Q" target="_blank">Jelly Roll on Addiction and Change</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=5S7c3lq3s7M" target="_blank">Macklemore on Drug Addiction</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=3Z4QWf0G0k0" target="_blank">Eminem Talks About Sobriety</a></div>
-    </div>
+<div class="card" id="vid2">
+<img src="https://img.youtube.com/vi/mgmVOuLgFB0/0.jpg">
+<a href="https://www.youtube.com/watch?v=mgmVOuLgFB0">One Day at a Time</a>
+</div>
+</div>
 
-    <!-- ROW 4 -->
-    <h2 class="left">🧠 Understanding Addiction</h2>
-    <div class="row">
-      <div class="card"><a href="https://www.youtube.com/watch?v=p3JLaF_4Tz8" target="_blank">How Addiction Works in the Brain</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=ao8L-0nSYzg" target="_blank">Why Addiction Happens (Explained)</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=BVg2bfqblGI" target="_blank">The Neuroscience of Addiction</a></div>
-    </div>
-  </div>
+<h2 class="left">⭐ Real Stories</h2>
+<div class="row">
+<div class="card" id="vid3">
+<img src="https://img.youtube.com/vi/OG--M8B04DA/0.jpg">
+<a href="https://www.youtube.com/watch?v=OG--M8B04DA">Brandon Novak Story</a>
+</div>
 
-  <!-- Chatbot -->
-  <div id="chatbox">
-    <div id="chat-header">Need Support? 💬</div>
-    <div id="chat-messages"></div>
-    <input id="chat-input" type="text" placeholder="Type here..." />
-  </div>
+<div class="card" id="vid4">
+<img src="https://img.youtube.com/vi/Kj0E3wF2l4Q/0.jpg">
+<a href="https://www.youtube.com/watch?v=Kj0E3wF2l4Q">Jelly Roll Interview</a>
+</div>
+</div>
 
-  <script>
-    const input = document.getElementById("chat-input");
-    const messages = document.getElementById("chat-messages");
+</div>
 
-    function addMessage(text, sender) {
-      const msg = document.createElement("div");
-      msg.textContent = text;
-      msg.style.margin = "8px 0";
-      msg.style.color = sender === "bot" ? "#4db6ac" : "#fff";
-      messages.appendChild(msg);
-      messages.scrollTop = messages.scrollHeight;
-    }
+<!-- CHAT -->
+<div id="chatbox">
+<div id="chat-header">Need Support? 💬</div>
+<div id="chat-messages"></div>
+<input id="chat-input" placeholder="Type here...">
+</div>
 
-    function botResponse(text) {
-      text = text.toLowerCase();
+<script>
+const messages = document.getElementById("chat-messages");
+const input = document.getElementById("chat-input");
 
-      if (text.includes("use") || text.includes("craving")) {
-        return "Pause. Breathe. Try a Recovery Motivation video above right now. You can get through this moment. If you're in danger, call or text 988.";
-      }
+function addMessage(text) {
+  let div = document.createElement("div");
+  div.innerHTML = text;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
 
-      if (text.includes("anxious")) {
-        return "That feeling will pass. Try Understanding Addiction—it can help you make sense of what's happening.";
-      }
+function highlight(id){
+  let el = document.getElementById(id);
+  el.scrollIntoView({behavior:"smooth"});
+  el.classList.add("highlight");
+  setTimeout(()=>el.classList.remove("highlight"),2000);
+}
 
-      if (text.includes("sad")) {
-        return "You're not alone. Try a Real Story of Recovery—you might connect with someone who's been there.";
-      }
+function botResponse(text){
+  text = text.toLowerCase();
 
-      return "I'm here with you. Try starting with a video above—just press play and stay with it.";
-    }
+  if(text.includes("use") || text.includes("craving")){
+    highlight("vid1");
+    return `You're not alone. <br><a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0" target="_blank">▶ Watch this right now</a><br>If you're in danger call 988.`;
+  }
 
-    input.addEventListener("keypress", function(e) {
-      if (e.key === "Enter" && input.value.trim()) {
-        addMessage("You: " + input.value, "user");
-        const response = botResponse(input.value);
-        setTimeout(() => addMessage("Bot: " + response, "bot"), 500);
-        input.value = "";
-      }
-    });
+  if(text.includes("sad")){
+    highlight("vid3");
+    return `Try this story—you might relate:<br><a href="https://www.youtube.com/watch?v=OG--M8B04DA">▶ Watch</a>`;
+  }
 
-    addMessage("Hi, I'm here with you. What's going on?", "bot");
-  </script>
+  return "I'm here with you. Try watching something above.";
+}
+
+input.addEventListener("keypress", e=>{
+  if(e.key==="Enter"){
+    addMessage("<b>You:</b> "+input.value);
+    let r = botResponse(input.value);
+    setTimeout(()=>addMessage("<b>Bot:</b> "+r),500);
+    input.value="";
+  }
+});
+
+addMessage("<b>Bot:</b> Hi, I'm here with you. What's going on?");
+</script>
+
 </body>
 </html>
