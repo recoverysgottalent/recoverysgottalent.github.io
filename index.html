@@ -17,7 +17,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* Consolidated body style with Open Sans */
 body {
   background:#2b3a42;
   font-family:'Open Sans', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -28,8 +27,58 @@ body {
 .container {
   max-width:1100px;
   margin:auto;
-  padding:30px;
+  padding:20px;
+}
+
+/* Top section flex */
+.top-section {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:20px;
+  margin-bottom:30px;
+}
+
+/* Featured Playlist */
+.featured-playlist {
+  flex:1;
+  text-align:left;
+}
+
+/* CHAT */
+#chatbox {
+  width:260px;
+  background:#1f2a30;
+  border-radius:10px;
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:1000;
+}
+
+#chat-header {
+  background:#4db6ac;
+  padding:8px;
   text-align:center;
+  color:white;
+}
+
+#chat-messages {
+  height:180px;
+  overflow-y:auto;
+  padding:10px;
+  font-size:0.9em;
+}
+
+#chat-input {
+  width:100%;
+  padding:8px;
+  border:none;
+}
+
+/* Headings */
+h1, h2 {
+  margin:10px 0;
 }
 
 h2.center { text-align:center; }
@@ -51,6 +100,7 @@ h2.left { text-align:left; margin-top:30px; }
   display:flex;
   overflow-x:auto;
   gap:12px;
+  margin-bottom:20px;
 }
 
 /* CARDS */
@@ -80,36 +130,6 @@ h2.left { text-align:left; margin-top:30px; }
 .highlight {
   box-shadow:0 0 12px #4db6ac;
 }
-
-/* chatbot */
-#chatbox {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:260px;
-  background:#1f2a30;
-  border-radius:10px;
-}
-
-#chat-header {
-  background:#4db6ac;
-  padding:8px;
-  text-align:center;
-  color:white;
-}
-
-#chat-messages {
-  height:180px;
-  overflow-y:auto;
-  padding:10px;
-  font-size:0.9em;
-}
-
-#chat-input {
-  width:100%;
-  padding:8px;
-  border:none;
-}
 </style>
 </head>
 
@@ -118,10 +138,25 @@ h2.left { text-align:left; margin-top:30px; }
 <div class="container">
 <h1>Recovery's Got Talent</h1>
 
-<h2 class="center">Featured Playlist</h2>
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/videoseries?list=PLBKLQ3LsQZCO6KcklmmA_q2RFmg5zNEQU"></iframe>
+<div class="top-section">
+  <!-- Featured Playlist Left -->
+  <div class="featured-playlist">
+    <h2 class="left">Featured Playlist</h2>
+    <iframe width="400" height="225"
+      src="https://www.youtube.com/embed/videoseries?list=PLBKLQ3LsQZCO6KcklmmA_q2RFmg5zNEQU"
+      frameborder="0" allowfullscreen>
+    </iframe>
+  </div>
 
+  <!-- Chatbot Top Right -->
+  <div id="chatbox">
+    <div id="chat-header">Need Support 💬</div>
+    <div id="chat-messages"></div>
+    <input id="chat-input" placeholder="Type here...">
+  </div>
+</div>
+
+<!-- The Recovery Channel Button -->
 <h2 class="center">The Recovery Channel</h2>
 <a class="button-link" href="https://www.youtube.com/@therecoverychannel2026" target="_blank">
 Visit Channel
@@ -198,13 +233,7 @@ card("u6","uelHwf8o7_U","Addiction Explained Clearly")
 
 </div>
 
-<!-- CHAT -->
-<div id="chatbox">
-<div id="chat-header">Need Support 💬</div>
-<div id="chat-messages"></div>
-<input id="chat-input" placeholder="Type here...">
-</div>
-
+<!-- Chatbot Script -->
 <script>
 const messages=document.getElementById("chat-messages");
 const input=document.getElementById("chat-input");
@@ -225,7 +254,6 @@ function highlight(id){
 
 function bot(t){
  t=t.toLowerCase();
-
  if(t.includes("use")||t.includes("craving")){
   highlight("m1");
   return `You're not alone right now.<br>
@@ -233,19 +261,16 @@ function bot(t){
   Just press play and stay with it.<br>
   If you're in danger, call or text 988.`;
  }
-
  if(t.includes("sad")||t.includes("depressed")){
   highlight("s1");
   return `You might connect with this story:<br>
   <a href="https://www.youtube.com/watch?v=OG--M8B04DA" target="_blank">▶ Watch here</a>`;
  }
-
  if(t.includes("anxious")){
   highlight("u1");
   return `This might help you understand what's happening:<br>
   <a href="https://www.youtube.com/watch?v=p3JLaF_4Tz8" target="_blank">▶ Watch this</a>`;
  }
-
  return `I'm here with you.<br>
  Try starting with something above—just press play.`;
 }
