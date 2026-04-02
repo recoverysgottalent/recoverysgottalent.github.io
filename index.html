@@ -11,260 +11,720 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-TBT8ZJFEYV');
-</script>  
+</script>
 
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-  background:#2b3a42;
-  font-family:'Open Sans', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color:#e0e6e6;
-  margin:0;
-  padding:0;
-}
+  body {
+    background: #2b3a42;
+    font-family: 'Open Sans', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e6e6;
+    margin: 0;
+    padding: 0;
+  }
 
-.container {
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-  text-align:center; /* center everything inside container */
-}
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
 
-/* Chatbot Top Right */
-#chatbox {
-  width:260px;
-  background:#1f2a30;
-  border-radius:10px;
-  position:fixed;
-  top:20px;
-  right:20px;
-  z-index:1000;
-}
+  h1, h2 {
+    margin: 10px 0;
+  }
 
-#chat-header {
-  background:#4db6ac;
-  padding:8px;
-  text-align:center;
-  color:white;
-}
+  .button-link {
+    display: inline-block;
+    background: #4db6ac;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-top: 10px;
+    font-weight: 600;
+  }
 
-#chat-messages {
-  height:180px;
-  overflow-y:auto;
-  padding:10px;
-  font-size:0.9em;
-}
+  .button-link:hover {
+    background: #3a9a8a;
+  }
 
-#chat-input {
-  width:100%;
-  padding:8px;
-  border:none;
-}
+  .section-heading {
+    text-align: left;
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
 
-/* Headings */
-h1, h2 {
-  margin:10px 0;
-}
+  .row {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+    padding-bottom: 6px;
+    scroll-behavior: smooth;
+  }
 
-/* BUTTON */
-.button-link {
-  display:inline-block;
-  background:#4db6ac;
-  color:white;
-  padding:10px 20px;
-  border-radius:6px;
-  text-decoration:none;
-  margin-top:10px;
-}
-.button-link:hover { background:#3a9a8a; }
+  .row::-webkit-scrollbar {
+    height: 10px;
+  }
 
-/* ROW */
-.row {
-  display:flex;
-  overflow-x:auto;
-  gap:12px;
-  margin-bottom:20px;
-  justify-content:flex-start;
-}
+  .row::-webkit-scrollbar-thumb {
+    background: rgba(77, 182, 172, 0.45);
+    border-radius: 999px;
+  }
 
-/* CARDS */
-.card {
-  min-width:170px;
-  background:#243238;
-  border-radius:8px;
-  overflow:hidden;
-  flex-shrink:0;
-}
+  .card {
+    min-width: 190px;
+    max-width: 190px;
+    background: #243238;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
 
-.card img {
-  width:100%;
-  height:95px;
-  object-fit:cover;
-}
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  }
 
-.card a {
-  display:block;
-  padding:8px;
-  font-size:0.85em;
-  color:#4db6ac;
-  text-decoration:none;
-}
+  .card img {
+    width: 100%;
+    height: 107px;
+    object-fit: cover;
+    display: block;
+  }
 
-/* highlight */
-.highlight {
-  box-shadow:0 0 12px #4db6ac;
-}
+  .card-content {
+    padding: 9px 10px 12px;
+  }
+
+  .card a {
+    color: #4db6ac;
+    text-decoration: none;
+    font-size: 0.88em;
+    font-weight: 600;
+    line-height: 1.35;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .card a:hover {
+    text-decoration: underline;
+  }
+
+  .card-meta {
+    font-size: 0.72em;
+    color: #b9c9c9;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .highlight {
+    box-shadow: 0 0 0 2px #4db6ac, 0 0 24px rgba(77, 182, 172, 0.45);
+    border-color: #4db6ac;
+  }
+
+  /* Chatbot */
+  #chatbox {
+    width: 300px;
+    background: #1f2a30;
+    border-radius: 12px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  #chat-header {
+    background: #4db6ac;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+  }
+
+  #chat-messages {
+    height: 280px;
+    overflow-y: auto;
+    padding: 12px;
+    font-size: 0.92em;
+    text-align: left;
+    line-height: 1.45;
+  }
+
+  .chat-line {
+    margin-bottom: 12px;
+  }
+
+  .chat-user b,
+  .chat-bot b {
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+
+  .chat-bot a {
+    color: #7fe0d8;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .chat-bot a:hover {
+    text-decoration: underline;
+  }
+
+  .chat-list {
+    margin: 8px 0 0;
+    padding-left: 18px;
+  }
+
+  .chat-list li {
+    margin: 6px 0;
+  }
+
+  #chat-input-wrap {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 8px;
+    background: #1a2429;
+  }
+
+  #chat-input {
+    width: 100%;
+    padding: 10px 11px;
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 0.95em;
+    outline: none;
+  }
+
+  @media (max-width: 900px) {
+    #chatbox {
+      position: static;
+      width: 100%;
+      max-width: 520px;
+      margin: 18px auto 0;
+    }
+
+    .card {
+      min-width: 170px;
+      max-width: 170px;
+    }
+
+    .card img {
+      height: 96px;
+    }
+  }
 </style>
 </head>
 
 <body>
 
 <div class="container">
-<h1>Recovery's Got Talent</h1>
+  <h1>Recovery's Got Talent</h1>
 
-<!-- Featured Playlist Centered -->
-<h2>Featured Playlist</h2>
-<iframe width="560" height="315"
-  src="https://www.youtube.com/embed/videoseries?list=PLBKLQ3LsQZCO6KcklmmA_q2RFmg5zNEQU"
-  frameborder="0" allowfullscreen>
-</iframe>
+  <h2>Featured Playlist</h2>
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/videoseries?list=PLBKLQ3LsQZCO6KcklmmA_q2RFmg5zNEQU"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
 
-<!-- The Recovery Channel Centered -->
-<h2>The Recovery Channel</h2>
-<a class="button-link" href="https://www.youtube.com/@therecoverychannel2026" target="_blank">
-Visit Channel
-</a>
+  <h2>The Recovery Channel</h2>
+  <a class="button-link" href="https://www.youtube.com/@therecoverychannel2026" target="_blank" rel="noopener noreferrer">
+    Visit Channel
+  </a>
 
-<script>
-function card(id, vid, title){
-  return `<div class="card" id="${id}">
-    <img src="https://img.youtube.com/vi/${vid}/0.jpg">
-    <a href="https://www.youtube.com/watch?v=${vid}" target="_blank">${title}</a>
-  </div>`;
-}
-</script>
-
-<!-- 🔥 MOTIVATION -->
-<h2>🔥 Recovery Motivation</h2>
-<div class="row">
-<script>
-document.write(
-card("m1","ZXsQAXx_ao0","If You're Struggling Right Now – Watch This")+
-card("m2","mgmVOuLgFB0","One Day at a Time – Recovery Message")+
-card("m3","wnHW6o8WMas","You Can Beat Addiction")+
-card("m4","4cYuWLZI5kw","Keep Going – Motivation")+
-card("m5","hLQl3WQQoQ0","Stay Strong Through Hard Moments")+
-card("m6","RgKAFK5djSk","Don't Give Up – Recovery Motivation")
-);
-</script>
+  <div id="library"></div>
 </div>
 
-<!-- 🎤 TALKS -->
-<h2>🎤 Powerful Talks</h2>
-<div class="row">
-<script>
-document.write(
-card("t1","PY9DcIMGxMs","Russell Brand on Addiction & Recovery")+
-card("t2","ys6TCO_olOc","Johann Hari TED Talk on Addiction")+
-card("t3","66cYcSak6nE","Gabor Maté – The Power of Addiction")+
-card("t4","tdJAQZxJ6vY","Addiction & Stigma Talk")+
-card("t5","e0WZx7lUOrY","How Addiction Changes the Brain")+
-card("t6","QmOF0crdyRU","Dopamine and Addiction Explained")
-);
-</script>
-</div>
-
-<!-- ⭐ STORIES -->
-<h2>⭐ Real Stories of Recovery</h2>
-<div class="row">
-<script>
-document.write(
-card("s1","OG--M8B04DA","Brandon Novak – Full Recovery Story")+
-card("s2","Kj0E3wF2l4Q","Jelly Roll on Addiction and Redemption")+
-card("s3","5S7c3lq3s7M","Macklemore on Drug Addiction")+
-card("s4","3Z4QWf0G0k0","Eminem Talks About Sobriety")+
-card("s5","l482T0yNkeo","Personal Story – Hitting Rock Bottom")+
-card("s6","60ItHLz5WEA","From Addiction to Recovery Journey")
-);
-</script>
-</div>
-
-<!-- 🧠 SCIENCE -->
-<h2>🧠 Understanding Addiction</h2>
-<div class="row">
-<script>
-document.write(
-card("u1","p3JLaF_4Tz8","How Addiction Works in the Brain")+
-card("u2","ao8L-0nSYzg","Why Addiction Happens")+
-card("u3","BVg2bfqblGI","Neuroscience of Addiction")+
-card("u4","h6fcK_fRYaI","Habit Loop Explained")+
-card("u5","VYOjWnS4cMY","Why We Get Addicted")+
-card("u6","uelHwf8o7_U","Addiction Explained Clearly")
-);
-</script>
-</div>
-
-</div>
-
-<!-- CHATBOT BACK -->
 <div id="chatbox">
   <div id="chat-header">Need Support 💬</div>
   <div id="chat-messages"></div>
-  <input id="chat-input" placeholder="Type here...">
+  <div id="chat-input-wrap">
+    <input id="chat-input" placeholder="Type here..." />
+  </div>
 </div>
 
 <script>
-const messages=document.getElementById("chat-messages");
-const input=document.getElementById("chat-input");
+  const videos = [
+    // Recovery Motivation
+    {
+      id: "PjSX9Oum08E",
+      title: "Increasing Motivation in All PIECES of Addiction Recovery",
+      category: "Recovery Motivation",
+      tags: ["motivation", "recovery", "sobriety", "stuck", "relapse", "counseling", "practical"]
+    },
+    {
+      id: "XbXwU2pbNw4",
+      title: "Breaking Addictions by Releasing your Past Emotions | Omar Pinto",
+      category: "Recovery Motivation",
+      tags: ["motivation", "healing", "shame", "pain", "trauma", "hope"]
+    },
+    {
+      id: "njn66mr8_Jo",
+      title: "Breaking Free: Build Your Warrior Spirit in Recovery",
+      category: "Recovery Motivation",
+      tags: ["motivation", "strength", "craving", "relapse", "hope", "fight"]
+    },
+    {
+      id: "_fPf_nqeBGY",
+      title: "Finding Motivation for Recovery at Rogers Behavioral Health",
+      category: "Recovery Motivation",
+      tags: ["motivation", "recovery", "stuck", "help", "sobriety"]
+    },
+    {
+      id: "cUH_-P4Uh2o",
+      title: "\"You are Somebody\" - Addiction Recovery Motivation",
+      category: "Recovery Motivation",
+      tags: ["motivation", "worth", "shame", "hopeless", "encouragement", "identity"]
+    },
+    {
+      id: "kpTI7KxG-gQ",
+      title: "Embracing A New Life Of Sobriety With Daily Motivation",
+      category: "Recovery Motivation",
+      tags: ["sobriety", "motivation", "daily", "alcohol", "fresh start", "hope"]
+    },
+    {
+      id: "YFGntmayXyA",
+      title: "Overcoming 30 Years of Addiction: Patricia's Story",
+      category: "Recovery Motivation",
+      tags: ["story", "recovery", "hope", "long-term", "motivation", "women"]
+    },
+    {
+      id: "FAFHFia4oEg",
+      title: "Anthony's Alcohol Addiction Recovery Story",
+      category: "Recovery Motivation",
+      tags: ["story", "alcohol", "recovery", "hope", "motivation"]
+    },
+    {
+      id: "5_IT4jbx0lU",
+      title: "Finding Myself In Recovery - Justin's Story",
+      category: "Recovery Motivation",
+      tags: ["story", "identity", "recovery", "hope", "motivation"]
+    },
+    {
+      id: "wrdr4TrDrAM",
+      title: "Real Stories of Recovery",
+      category: "Recovery Motivation",
+      tags: ["story", "hope", "recovery", "motivation", "support"]
+    },
 
-function msg(t){
- let d=document.createElement("div");
- d.innerHTML=t;
- messages.appendChild(d);
- messages.scrollTop=messages.scrollHeight;
-}
+    // Powerful Talks
+    {
+      id: "PY9DcIMGxMs",
+      title: "Everything you think you know about addiction is wrong | Johann Hari | TED",
+      category: "Powerful Talks",
+      tags: ["talk", "connection", "isolation", "understanding", "hope", "big picture"]
+    },
+    {
+      id: "EuvHBlyLTro",
+      title: "Relapse Prevention Failed: And How WE Can Solve this Crisis Together | Adam Gunton | TEDxBillings",
+      category: "Powerful Talks",
+      tags: ["talk", "relapse", "prevention", "shame", "hope", "practical"]
+    },
+    {
+      id: "IiJavc7XhBc",
+      title: "How I overcame addiction | Alex Catterson | TEDxCU",
+      category: "Powerful Talks",
+      tags: ["talk", "story", "healing", "hope", "recovery"]
+    },
+    {
+      id: "PJJtBDg15mk",
+      title: "A Way to Recover | Trey Lewis | TEDxAlexanderPark",
+      category: "Powerful Talks",
+      tags: ["talk", "recovery", "hope", "path", "practical"]
+    },
+    {
+      id: "HtiHqE0hFMA",
+      title: "My journey through addiction and healing | Lance Wright | TEDxTemecula",
+      category: "Powerful Talks",
+      tags: ["talk", "healing", "story", "trauma", "hope"]
+    },
+    {
+      id: "FDa4DTUKZh0",
+      title: "Addiction: A Disease of Our Survival System | Malcolm Horn | TEDxBillings",
+      category: "Powerful Talks",
+      tags: ["talk", "brain", "science", "understanding", "disease model"]
+    },
+    {
+      id: "LW4Ca-3pHfo",
+      title: "Addiction – don't let the bear catch you | Steve Gill",
+      category: "Powerful Talks",
+      tags: ["talk", "warning", "relapse", "patterns", "understanding"]
+    },
+    {
+      id: "HHiN7JftdcY",
+      title: "Addiction: A Story of Stigma, A Story of Hope | Scott McFadden",
+      category: "Powerful Talks",
+      tags: ["talk", "stigma", "hope", "story", "understanding", "compassion"]
+    },
 
-function highlight(id){
- let el=document.getElementById(id);
- el.scrollIntoView({behavior:"smooth", block:"center"});
- el.classList.add("highlight");
- setTimeout(()=>el.classList.remove("highlight"),2000);
-}
+    // Real Stories of Recovery
+    {
+      id: "U_4_ZQMSZuw",
+      title: "Jamie Lee Curtis Opens Up on Her Drug Addiction and Recovery | The Story Of",
+      category: "Real Stories of Recovery",
+      tags: ["celebrity", "story", "recovery", "opiates", "hope", "women"]
+    },
+    {
+      id: "_5EtmS2a5CY",
+      title: "Ben Affleck Opens Up About Getting Sober",
+      category: "Real Stories of Recovery",
+      tags: ["celebrity", "story", "alcohol", "sobriety", "hope"]
+    },
+    {
+      id: "EILwOhrGR1c",
+      title: "Brad Pitt opens up about alcohol addiction with Dax Shepard",
+      category: "Real Stories of Recovery",
+      tags: ["celebrity", "story", "alcohol", "sobriety", "men"]
+    },
+    {
+      id: "1mbe4F3YBqw",
+      title: "The Day Anthony Hopkins Quit Drinking | The Interview",
+      category: "Real Stories of Recovery",
+      tags: ["celebrity", "story", "alcohol", "sobriety", "hope"]
+    },
+    {
+      id: "pexeZxx6JVI",
+      title: "Cara Delevingne Opens Up About Sobriety & Healing | Vogue",
+      category: "Real Stories of Recovery",
+      tags: ["celebrity", "story", "sobriety", "healing", "women"]
+    },
+    {
+      id: "9cSPhCKEOxM",
+      title: "Jason Biggs on American Pie Fame, Addiction, Rock Bottom, and 7+ Years Sober",
+      category: "Real Stories of Recovery",
+      tags: ["celebrity", "story", "rock bottom", "sobriety", "hope"]
+    },
+    {
+      id: "xXSs7tqVvtQ",
+      title: "Jax Taylor Reveals Drug Addiction Battle & His Sobriety Journey",
+      category: "Real Stories of Recovery",
+      tags: ["celebrity", "story", "drugs", "sobriety", "recovery"]
+    },
+    {
+      id: "0QcjrBCmPRs",
+      title: "Macklemore on Addiction & Recovery",
+      category: "Real Stories of Recovery",
+      tags: ["celebrity", "story", "music", "recovery", "sobriety", "hope"]
+    },
+    {
+      id: "cRDSbxdCb14",
+      title: "How Macklemore is changing the narrative on addiction l GMA",
+      category: "Real Stories of Recovery",
+      tags: ["celebrity", "story", "advocacy", "recovery", "hope"]
+    },
+    {
+      id: "OG--M8B04DA",
+      title: "Addiction: Tomorrow Is Going To Be Better Brandon Novak's Story",
+      category: "Real Stories of Recovery",
+      tags: ["story", "hope", "rock bottom", "heroin", "recovery", "motivation"]
+    },
 
-function bot(t){
- t=t.toLowerCase();
- if(t.includes("use")||t.includes("craving")){
-  highlight("m1");
-  return `You're not alone right now.<br>
-  <a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0" target="_blank">▶ Watch this now</a><br>
-  Just press play and stay with it.<br>
-  If you're in danger, call or text 988.`;
- }
- if(t.includes("sad")||t.includes("depressed")){
-  highlight("s1");
-  return `You might connect with this story:<br>
-  <a href="https://www.youtube.com/watch?v=OG--M8B04DA" target="_blank">▶ Watch here</a>`;
- }
- if(t.includes("anxious")){
-  highlight("u1");
-  return `This might help you understand what's happening:<br>
-  <a href="https://www.youtube.com/watch?v=p3JLaF_4Tz8" target="_blank">▶ Watch this</a>`;
- }
- return `I'm here with you.<br>
- Try starting with something above—just press play.`;
-}
+    // Understanding Addiction
+    {
+      id: "bwZcPwlRRcc",
+      title: "Addiction Neuroscience 101",
+      category: "Understanding Addiction",
+      tags: ["science", "brain", "dopamine", "understanding", "education"]
+    },
+    {
+      id: "RZ5LH634W8s",
+      title: "How an Addicted Brain Works",
+      category: "Understanding Addiction",
+      tags: ["science", "brain", "understanding", "why", "education"]
+    },
+    {
+      id: "3ndOL0G-YRg",
+      title: "Neuroscience - Addiction and the Brain",
+      category: "Understanding Addiction",
+      tags: ["science", "brain", "dopamine", "education", "understanding"]
+    },
+    {
+      id: "ras8yOq30WY",
+      title: "The Neurobiology of Addiction Addiction 101 in Olson",
+      category: "Understanding Addiction",
+      tags: ["science", "brain", "neurobiology", "education", "understanding"]
+    },
+    {
+      id: "aOSD9rTVuWc",
+      title: "The Neuroscience of Addiction - with Marc Lewis",
+      category: "Understanding Addiction",
+      tags: ["science", "brain", "neuroscience", "understanding", "education"]
+    },
+    {
+      id: "XwYASU-YVcw",
+      title: "Landscape of the Mind: Addiction Explained",
+      category: "Understanding Addiction",
+      tags: ["science", "understanding", "brain", "explained", "education"]
+    },
+    {
+      id: "zYphZvRHm6Y",
+      title: "The Brain and Recovery: An Update on the Neuroscience of Addiction",
+      category: "Understanding Addiction",
+      tags: ["science", "brain", "recovery", "education", "understanding"]
+    },
+    {
+      id: "OC8eA8rNqp8",
+      title: "Dopamine nation and the neuroscience of addiction with Anna Lembke",
+      category: "Understanding Addiction",
+      tags: ["science", "dopamine", "craving", "understanding", "education"]
+    },
+    {
+      id: "cL97QKupu1g",
+      title: "Dr. Nora Volkow: How Drug Addiction Hijacks the Brain",
+      category: "Understanding Addiction",
+      tags: ["science", "brain", "drugs", "understanding", "education"]
+    },
+    {
+      id: "tM9dmnf7NBE",
+      title: "Changing Minds - How Substance Use Disorder Changes the Brain",
+      category: "Understanding Addiction",
+      tags: ["science", "brain", "substance use", "understanding", "education"]
+    }
+  ];
 
-input.addEventListener("keypress",e=>{
- if(e.key==="Enter" && input.value.trim()){
-  msg("<b>You:</b> "+input.value);
-  setTimeout(()=>msg("<b>Bot:</b> "+bot(input.value)),500);
-  input.value="";
- }
-});
+  const categories = [
+    "Recovery Motivation",
+    "Powerful Talks",
+    "Real Stories of Recovery",
+    "Understanding Addiction"
+  ];
 
-msg("<b>Bot:</b> Hi, I'm here with you. What's going on?");
+  const categoryEmoji = {
+    "Recovery Motivation": "🔥",
+    "Powerful Talks": "🎤",
+    "Real Stories of Recovery": "⭐",
+    "Understanding Addiction": "🧠"
+  };
+
+  function youtubeThumb(videoId) {
+    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  }
+
+  function youtubeLink(videoId) {
+    return `https://www.youtube.com/watch?v=${videoId}`;
+  }
+
+  function escapeHtml(str) {
+    return str
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  function renderLibrary() {
+    const library = document.getElementById("library");
+    library.innerHTML = categories.map(category => {
+      const categoryVideos = videos.filter(v => v.category === category);
+      const rowId = `row-${category.toLowerCase().replaceAll(" ", "-")}`;
+
+      return `
+        <h2 class="section-heading">${categoryEmoji[category]} ${category}</h2>
+        <div class="row" id="${rowId}">
+          ${categoryVideos.map(video => `
+            <div class="card" id="card-${video.id}" data-video-id="${video.id}">
+              <img src="${youtubeThumb(video.id)}" alt="${escapeHtml(video.title)} thumbnail">
+              <div class="card-content">
+                <a href="${youtubeLink(video.id)}" target="_blank" rel="noopener noreferrer">
+                  ${escapeHtml(video.title)}
+                </a>
+                <div class="card-meta">${escapeHtml(video.category)}</div>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }).join("");
+  }
+
+  renderLibrary();
+
+  const messages = document.getElementById("chat-messages");
+  const input = document.getElementById("chat-input");
+
+  function msg(html, who = "bot") {
+    const d = document.createElement("div");
+    d.className = `chat-line chat-${who}`;
+    d.innerHTML = html;
+    messages.appendChild(d);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function clearHighlights() {
+    document.querySelectorAll(".highlight").forEach(el => el.classList.remove("highlight"));
+  }
+
+  function highlightCards(videoIds) {
+    clearHighlights();
+
+    videoIds.forEach((id, index) => {
+      const card = document.getElementById(`card-${id}`);
+      if (!card) return;
+
+      setTimeout(() => {
+        card.classList.add("highlight");
+      }, index * 120);
+    });
+
+    const first = document.getElementById(`card-${videoIds[0]}`);
+    if (first) {
+      first.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+      const row = first.closest(".row");
+      if (row) {
+        const rowRect = row.getBoundingClientRect();
+        const cardRect = first.getBoundingClientRect();
+        row.scrollLeft += (cardRect.left - rowRect.left) - 24;
+      }
+    }
+
+    setTimeout(clearHighlights, 5000);
+  }
+
+  function normalize(text) {
+    return text.toLowerCase().replace(/[^a-z0-9\s']/g, " ");
+  }
+
+  function scoreVideo(video, text) {
+    let score = 0;
+
+    const keywordGroups = [
+      { words: ["use", "using", "relapse", "craving", "tempted", "urge"], tags: ["craving", "relapse", "motivation", "hope"] },
+      { words: ["alcohol", "drinking", "drink", "beer", "vodka", "wine"], tags: ["alcohol", "sobriety"] },
+      { words: ["drug", "drugs", "opioid", "heroin", "pill", "fentanyl"], tags: ["drugs", "heroin", "opiates", "substance use"] },
+      { words: ["sad", "depressed", "hopeless", "empty", "worthless"], tags: ["hope", "story", "healing", "worth"] },
+      { words: ["shame", "guilt", "stigma", "embarrassed"], tags: ["shame", "stigma", "compassion", "hope"] },
+      { words: ["alone", "lonely", "nobody", "isolated"], tags: ["connection", "story", "hope"] },
+      { words: ["anxious", "anxiety", "panic", "mind racing"], tags: ["science", "brain", "understanding", "education"] },
+      { words: ["why", "brain", "dopamine", "science", "understand"], tags: ["science", "brain", "dopamine", "understanding", "education"] },
+      { words: ["celebrity", "famous", "actor", "rapper", "singer"], tags: ["celebrity", "music"] },
+      { words: ["motivation", "encouragement", "push", "strength"], tags: ["motivation", "hope", "fight"] }
+    ];
+
+    keywordGroups.forEach(group => {
+      const hit = group.words.some(word => text.includes(word));
+      if (hit) {
+        video.tags.forEach(tag => {
+          if (group.tags.includes(tag)) score += 3;
+        });
+      }
+    });
+
+    // Direct tag matching
+    video.tags.forEach(tag => {
+      if (text.includes(tag)) score += 4;
+    });
+
+    // Helpful defaults
+    if (text.includes("talk") && video.category === "Powerful Talks") score += 5;
+    if (text.includes("story") && video.category === "Real Stories of Recovery") score += 5;
+    if (text.includes("science") && video.category === "Understanding Addiction") score += 5;
+    if ((text.includes("motivation") || text.includes("help me")) && video.category === "Recovery Motivation") score += 5;
+
+    return score;
+  }
+
+  function recommendVideos(userText) {
+    const text = normalize(userText);
+
+    const dangerNow =
+      text.includes("overdose") ||
+      text.includes("od") ||
+      text.includes("i might die") ||
+      text.includes("i want to die") ||
+      text.includes("kill myself") ||
+      text.includes("suicide") ||
+      text.includes("end it") ||
+      text.includes("about to use") ||
+      text.includes("using tonight") ||
+      text.includes("using now");
+
+    const ranked = [...videos]
+      .map(video => ({ video, score: scoreVideo(video, text) }))
+      .sort((a, b) => b.score - a.score);
+
+    let picks = ranked.filter(item => item.score > 0).slice(0, 3).map(item => item.video);
+
+    if (picks.length === 0) {
+      picks = [
+        videos.find(v => v.id === "PjSX9Oum08E"),
+        videos.find(v => v.id === "OG--M8B04DA"),
+        videos.find(v => v.id === "bwZcPwlRRcc")
+      ].filter(Boolean);
+    }
+
+    return { dangerNow, picks };
+  }
+
+  function buildResponse(userText) {
+    const { dangerNow, picks } = recommendVideos(userText);
+
+    if (dangerNow) {
+      highlightCards(picks.map(v => v.id));
+
+      return `
+        <b>Bot:</b> I’m really glad you reached out right now.<br><br>
+        If you’re in immediate danger, call or text <b>988</b> right now. If there is an overdose risk, call <b>911</b> now.<br><br>
+        While you do that, here are 3 specific things on this page to click immediately:
+        <ol class="chat-list">
+          ${picks.map(v => `
+            <li>
+              <a href="${youtubeLink(v.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(v.title)}</a>
+              <div style="font-size:0.85em;color:#b9c9c9;">${escapeHtml(v.category)}</div>
+            </li>
+          `).join("")}
+        </ol>
+      `;
+    }
+
+    highlightCards(picks.map(v => v.id));
+
+    return `
+      <b>Bot:</b> I picked a few specific things on this page for what you said:
+      <ol class="chat-list">
+        ${picks.map(v => `
+          <li>
+            <a href="${youtubeLink(v.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(v.title)}</a>
+            <div style="font-size:0.85em;color:#b9c9c9;">${escapeHtml(v.category)}</div>
+          </li>
+        `).join("")}
+      </ol>
+      Start with the first one. I highlighted them on the page too.
+    `;
+  }
+
+  input.addEventListener("keypress", e => {
+    if (e.key === "Enter" && input.value.trim()) {
+      const userText = input.value.trim();
+      msg(`<b>You:</b> ${escapeHtml(userText)}`, "user");
+      const response = buildResponse(userText);
+      setTimeout(() => msg(response, "bot"), 250);
+      input.value = "";
+    }
+  });
+
+  msg(
+    `<b>Bot:</b> Hi, I’m here with you. Tell me what’s going on — for example:
+    <div class="chat-list">
+      <div>• “I feel like using.”</div>
+      <div>• “I’m anxious and my mind is racing.”</div>
+      <div>• “I need a real recovery story.”</div>
+      <div>• “I want something about the brain and addiction.”</div>
+    </div>`,
+    "bot"
+  );
 </script>
 
 </body>
