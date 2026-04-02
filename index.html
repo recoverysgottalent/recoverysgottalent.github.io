@@ -26,9 +26,16 @@
     }
 
     h2 {
-      text-align: left;
       margin: 30px 0 10px;
       color: #cfd8dc;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .left {
+      text-align: left;
     }
 
     a {
@@ -51,7 +58,7 @@
       border-radius: 6px;
     }
 
-    /* 🎬 Netflix-style rows */
+    /* Netflix-style rows */
     .row {
       display: flex;
       overflow-x: auto;
@@ -73,12 +80,6 @@
       transform: scale(1.05);
     }
 
-    .card a {
-      color: #4db6ac;
-      font-weight: 500;
-    }
-
-    /* Hide scrollbar (clean look) */
     .row::-webkit-scrollbar {
       display: none;
     }
@@ -124,52 +125,52 @@
     <h1>Recovery's Got Talent</h1>
     <p>A safe place to find encouragement during your recovery journey.</p>
 
-    <h2>Featured Playlist</h2>
+    <h2 class="centered">Featured Playlist</h2>
     <iframe width="560" height="315"
       src="https://www.youtube.com/embed/videoseries?list=PLBKLQ3LsQZCO6KcklmmA_q2RFmg5zNEQU"
       allowfullscreen>
     </iframe>
 
-    <h2>The Recovery Channel</h2>
+    <h2 class="centered">The Recovery Channel</h2>
     <a class="button-link" href="https://www.youtube.com/@therecoverychannel2026" target="_blank">
       Visit Channel
     </a>
 
-    <!-- 🎬 ROW 1 -->
-    <h2>🔥 Recovery Motivation</h2>
+    <!-- ROW 1 -->
+    <h2 class="left">🔥 Recovery Motivation</h2>
     <div class="row">
-      <div class="card"><a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0" target="_blank">If You're Struggling Right Now</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=mgmVOuLgFB0" target="_blank">One Day at a Time</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=ZXsQAXx_ao0" target="_blank">If You're Struggling Right Now (Watch This)</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=mgmVOuLgFB0" target="_blank">One Day at a Time – Recovery Message</a></div>
       <div class="card"><a href="https://www.youtube.com/watch?v=wnHW6o8WMas" target="_blank">You Can Beat Addiction</a></div>
     </div>
 
-    <!-- 🎬 ROW 2 -->
-    <h2>🎤 Powerful Talks</h2>
+    <!-- ROW 2 -->
+    <h2 class="left">🎤 Powerful Talks</h2>
     <div class="row">
-      <div class="card"><a href="https://www.youtube.com/watch?v=PY9DcIMGxMs" target="_blank">Russell Brand on Addiction</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=ys6TCO_olOc" target="_blank">Johann Hari TED Talk</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=66cYcSak6nE" target="_blank">Gabor Maté</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=PY9DcIMGxMs" target="_blank">Russell Brand: Recovery & Addiction Talk</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=ys6TCO_olOc" target="_blank">Johann Hari TED Talk on Addiction</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=66cYcSak6nE" target="_blank">Gabor Maté: The Power of Addiction</a></div>
     </div>
 
-    <!-- 🎬 ROW 3 -->
-    <h2>⭐ Celebrity Recovery Stories</h2>
+    <!-- ROW 3 -->
+    <h2 class="left">⭐ Real Stories of Recovery</h2>
     <div class="row">
-      <div class="card"><a href="https://www.youtube.com/watch?v=OG--M8B04DA" target="_blank">Robert Downey Jr.</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=Kj0E3wF2l4Q" target="_blank">Jelly Roll Interview</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=5S7c3lq3s7M" target="_blank">Macklemore</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=3Z4QWf0G0k0" target="_blank">Eminem Sobriety</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=OG--M8B04DA" target="_blank">Brandon Novak: Addiction & Recovery Story</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=Kj0E3wF2l4Q" target="_blank">Jelly Roll on Addiction and Change</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=5S7c3lq3s7M" target="_blank">Macklemore on Drug Addiction</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=3Z4QWf0G0k0" target="_blank">Eminem Talks About Sobriety</a></div>
     </div>
 
-    <!-- 🎬 ROW 4 -->
-    <h2>🧠 Understanding Addiction</h2>
+    <!-- ROW 4 -->
+    <h2 class="left">🧠 Understanding Addiction</h2>
     <div class="row">
-      <div class="card"><a href="https://www.youtube.com/watch?v=p3JLaF_4Tz8" target="_blank">How Addiction Works</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=ao8L-0nSYzg" target="_blank">Why Addiction Happens</a></div>
-      <div class="card"><a href="https://www.youtube.com/watch?v=BVg2bfqblGI" target="_blank">Neuroscience of Addiction</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=p3JLaF_4Tz8" target="_blank">How Addiction Works in the Brain</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=ao8L-0nSYzg" target="_blank">Why Addiction Happens (Explained)</a></div>
+      <div class="card"><a href="https://www.youtube.com/watch?v=BVg2bfqblGI" target="_blank">The Neuroscience of Addiction</a></div>
     </div>
   </div>
 
-  <!-- 💬 Chatbot -->
+  <!-- Chatbot -->
   <div id="chatbox">
     <div id="chat-header">Need Support? 💬</div>
     <div id="chat-messages"></div>
@@ -201,7 +202,7 @@
       }
 
       if (text.includes("sad")) {
-        return "You're not alone. Try a Celebrity Recovery Story—you might connect with someone who's been there.";
+        return "You're not alone. Try a Real Story of Recovery—you might connect with someone who's been there.";
       }
 
       return "I'm here with you. Try starting with a video above—just press play and stay with it.";
