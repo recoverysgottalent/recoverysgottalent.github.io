@@ -115,7 +115,7 @@
     margin-bottom: 20px;
     justify-content: flex-start;
     padding-bottom: 6px;
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
   .row::-webkit-scrollbar {
@@ -703,32 +703,119 @@
       .replaceAll("'", "&#39;");
   }
 
+  function renderVideoCard(video, copyIndex, itemIndex) {
+    return `
+      <div
+        class="card"
+        id="card-${video.id}-${copyIndex}-${itemIndex}"
+        data-video-id="${video.id}"
+        data-copy="${copyIndex}">
+        <img src="${youtubeThumb(video.id)}" alt="${escapeHtml(video.title)} thumbnail">
+        <div class="card-content">
+          <a href="${youtubeLink(video.id)}" target="_blank" rel="noopener noreferrer">
+            ${escapeHtml(video.title)}
+          </a>
+          <div class="card-meta">${escapeHtml(video.category)}</div>
+        </div>
+      </div>
+    `;
+  }
+
   function renderLibrary() {
     const library = document.getElementById("library");
+
     library.innerHTML = categories.map(category => {
       const categoryVideos = videos.filter(v => v.category === category);
       const rowId = `row-${category.toLowerCase().replaceAll(" ", "-")}`;
 
+      const repeatedCards = [0, 1, 2].map(copyIndex =>
+        categoryVideos.map((video, itemIndex) => renderVideoCard(video, copyIndex, itemIndex)).join("")
+      ).join("");
+
       return `
         <h2 class="section-heading">${category}</h2>
-        <div class="row" id="${rowId}">
-          ${categoryVideos.map(video => `
-            <div class="card" id="card-${video.id}" data-video-id="${video.id}">
-              <img src="${youtubeThumb(video.id)}" alt="${escapeHtml(video.title)} thumbnail">
-              <div class="card-content">
-                <a href="${youtubeLink(video.id)}" target="_blank" rel="noopener noreferrer">
-                  ${escapeHtml(video.title)}
-                </a>
-                <div class="card-meta">${escapeHtml(video.category)}</div>
-              </div>
-            </div>
-          `).join("")}
+        <div
+          class="row infinite-row"
+          id="${rowId}"
+          data-original-count="${categoryVideos.length}">
+          ${repeatedCards}
         </div>
       `;
     }).join("");
   }
 
+  function setupInfiniteRows() {
+    const rows = document.querySelectorAll(".infinite-row");
+
+    rows.forEach((row, index) => {
+      requestAnimationFrame(() => {
+        const setWidth = row.scrollWidth / 3;
+        row.dataset.setWidth = setWidth;
+        row.scrollLeft = setWidth;
+      });
+
+      row.dataset.autoPaused = "false";
+      row.dataset.userInteracting = "false";
+
+      row.addEventListener("scroll", () => {
+        const setWidth = Number(row.dataset.setWidth || 0);
+        if (!setWidth) return;
+
+        if (row.scrollLeft <= setWidth * 0.25) {
+          row.scrollLeft += setWidth;
+        } else if (row.scrollLeft >= setWidth * 1.75) {
+          row.scrollLeft -= setWidth;
+        }
+      });
+
+      row.addEventListener("mouseenter", () => {
+        row.dataset.autoPaused = "true";
+      });
+
+      row.addEventListener("mouseleave", () => {
+        row.dataset.autoPaused = "false";
+      });
+
+      row.addEventListener("touchstart", () => {
+        row.dataset.userInteracting = "true";
+      }, { passive: true });
+
+      row.addEventListener("touchend", () => {
+        setTimeout(() => {
+          row.dataset.userInteracting = "false";
+        }, 1200);
+      }, { passive: true });
+
+      row.addEventListener("mousedown", () => {
+        row.dataset.userInteracting = "true";
+      });
+
+      window.addEventListener("mouseup", () => {
+        setTimeout(() => {
+          row.dataset.userInteracting = "false";
+        }, 1200);
+      });
+
+      const speed = 0.35 + (index * 0.05);
+
+      function autoScroll() {
+        const setWidth = Number(row.dataset.setWidth || 0);
+        const isPaused = row.dataset.autoPaused === "true";
+        const isInteracting = row.dataset.userInteracting === "true";
+
+        if (setWidth && !isPaused && !isInteracting) {
+          row.scrollLeft += speed;
+        }
+
+        requestAnimationFrame(autoScroll);
+      }
+
+      requestAnimationFrame(autoScroll);
+    });
+  }
+
   renderLibrary();
+  setupInfiniteRows();
 
   const messages = document.getElementById("chat-messages");
   const input = document.getElementById("chat-input");
@@ -749,15 +836,15 @@
     clearHighlights();
 
     videoIds.forEach((id, index) => {
-      const card = document.getElementById(`card-${id}`);
-      if (!card) return;
-
-      setTimeout(() => {
-        card.classList.add("highlight");
-      }, index * 120);
+      const cards = document.querySelectorAll(`[data-video-id="${id}"][data-copy="1"]`);
+      cards.forEach(card => {
+        setTimeout(() => {
+          card.classList.add("highlight");
+        }, index * 120);
+      });
     });
 
-    const first = document.getElementById(`card-${videoIds[0]}`);
+    const first = document.querySelector(`[data-video-id="${videoIds[0]}"][data-copy="1"]`);
     if (first) {
       first.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
       const row = first.closest(".row");
